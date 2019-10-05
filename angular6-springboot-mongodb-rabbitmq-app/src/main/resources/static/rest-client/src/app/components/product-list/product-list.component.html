@@ -1,0 +1,20 @@
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Description</th>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let product of products">                
+                <td>{{product.name}}</td>
+                <td>{{product.cost}}</td>
+                <td>{{product.description}}</td>
+                <td><button class="btn btn-primary" (click)="updateProduct(product)"><img width="30px" hight="30px" src="https://img.icons8.com/color/48/000000/edit.png"></button></td>
+                <td><button class="btn btn-primary" (click)="deleteProduct(product)"><img width="30px" hight="30px"  src="https://img.icons8.com/color/48/000000/delete-forever.png"></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button  class="btn btn-primary" (click)="newProduct()">Add</button>
+</div>
