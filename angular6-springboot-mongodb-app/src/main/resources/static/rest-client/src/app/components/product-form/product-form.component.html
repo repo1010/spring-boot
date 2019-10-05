@@ -1,0 +1,27 @@
+<div class="container">
+<h2>Product Form</h2>
+
+<form  (ngSubmit)="processForm()">
+
+    <div class="form-group">            
+            <input type="hidden" class="form-control" name="id" [(ngModel)]="product.id"/>
+    </div>
+        
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="product.name"/>
+    </div>
+
+    <div class="form-group">
+            <label for="cost">Cost</label>
+            <input type="text" class="form-control" name="cost" [(ngModel)]="product.cost"/>
+    </div>
+
+    <div class="form-group">
+            <label for="description">Decription</label>
+            <input type="text" class="form-control" name="description" [(ngModel)]="product.description"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
