@@ -13,46 +13,54 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.crudwebapp.model.Customer;
-import com.spring.crudwebapp.service.CustomerService;
+import com.spring.crudwebapp.service.ICustomerService;
+import com.spring.crudwebapp.service.ProductService;
 
 @Controller
 public class CustomerController {
+
+	@Autowired
+	ICustomerService customerService;
 	
-	@Autowired	
-	CustomerService customerService;
+	@Autowired
+	ProductService productService;
 	
+	@Autowired
+	RestTemplate restTemplate;
 
 	@GetMapping("/")
 	public String home(Map<String, Object> map) {
 		return "home";
 	}
-	
+
 	@GetMapping("/showlogin")
 	public String Customer(ModelMap map) {
 		map.addAttribute("customer", new Customer());
 		return "login";
 	}
-	
+
 	@GetMapping("/showregistration")
 	public String registration(ModelMap map) {
 		map.addAttribute("customer", new Customer());
 		return "registration";
 	}
-	
-	@RequestMapping(value = "/processlogin")
-	public String processCustomer(HttpServletRequest request ,ModelMap map, @ModelAttribute("customer") Customer Customer, BindingResult bindingResult) {
+
+	@RequestMapping(value = "/productportal")
+	public String processCustomer(HttpServletRequest request, ModelMap map,
+			@ModelAttribute("products") Customer customer, BindingResult bindingResult) {
 		Boolean isCustomerSuccess = false;
-		System.out.println("1");
-		isCustomerSuccess = customerService.fetchData(Customer);
-		System.out.println("2" + isCustomerSuccess);
-		if(isCustomerSuccess) {
-		map.addAttribute("customer", new Customer());
-		return "customerportal";
-		} else {
+		isCustomerSuccess = customerService.fetchData(customer);
+			
+		
+		if(!isCustomerSuccess) 
 			map.addAttribute("customer", new Customer());
-			return "login";
-		}
+		else
+			request.getSession().setAttribute("username", customer.getUsername().toUpperCase());
+
+		return isCustomerSuccess ? "redirect:/products" : "login";
 	}
 }

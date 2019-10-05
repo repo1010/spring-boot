@@ -1,6 +1,4 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,31 +6,34 @@
 <title>Login</title>
 </head>
 <body>
-	Login Page
-	<p align="center">
-		<a href="">Home</a>
-	</p>
-	<form:form id="loginForm" modelAttribute="customer" action="processlogin"
-		method="post">
+	<div class="container-fluid">
+		<p align="center">
+			<a href="">Home</a>
+		</p>
+		<form:form id="loginForm" modelAttribute="customer"
+			action="productportal" method="post">
 
-		<table align="center">
-			<tr>
-				<td><form:label path="username">Username : </form:label></td>
-				<td><form:input path="username" name="username" id="username" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="password">Password : </form:label></td>
-				<td><form:input path="password" name="password" id="password" />
-			</tr>
-			<tr>
-			<td></td>
-			<td><form:button name="login" id="login">Login</form:button></td>
-			</tr>
-		</table>
+			<table align="center" class="table">
+				<tr class="form-group">
+					<td><form:label path="username">Username : </form:label></td>
+					<td><form:input path="username" name="username" id="username"
+							class="form-control" /></td>
+				</tr>
+				<tr class="form-group">
+					<td><form:label path="password">Password : </form:label></td>
+					<td><form:input path="password" name="password" id="password"
+							class="form-control" />
+				</tr>
+				<tr>
+					<td></td>
+					<td><form:button name="login" id="login"
+							class="btn btn-primary">Login</form:button></td>
+				</tr>
+			</table>
 
-	</form:form>
+		</form:form>
 
-
+	</div>
 
 </body>
 </html>

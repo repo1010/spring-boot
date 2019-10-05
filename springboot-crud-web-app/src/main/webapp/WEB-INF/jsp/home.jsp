@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +6,8 @@
 <title>Customer Portal</title>
 </head>
 <body>
-	<div align="center">
-		<a href="showlogin">Login</a><br> <a href="showregistration">Registration</a>
+	<div align="center" class="container">
+		<a class="active" href="showlogin">Login</a><br> <a class="active" href="showregistration">Registration</a>
 	</div>
 </body>
 </html>

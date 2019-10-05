@@ -1,5 +1,7 @@
 package com.spring.crudwebapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,16 @@ public class CustomerService implements ICustomerService {
 	CustomerRepository custRepository;
 
 	public Boolean fetchData(Customer customer) {
-		Customer cust = custRepository.findById(customer.getUsername()).get();
+		Customer cust = custRepository.findByUsername(customer.getUsername()).get();
 		if (cust.getPassword().equals(customer.getPassword()))
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public void populate(List<Customer> custList) {
+		custRepository.saveAll(custList);	
 	}
 
 }
